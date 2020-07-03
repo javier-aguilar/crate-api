@@ -10,6 +10,7 @@
     "db:migrate": "./node_modules/.bin/sequelize db:migrate",
     "db:seed": "./node_modules/.bin/sequelize db:seed:all",
     "start": "npm run build:prod && npm run start:server",
+    "heroku-postbuild": "npm install",
     "start:dev": "nodemon src/index.js --exec babel-node",
     "build:prod": "babel src -s -D -d build",
     "start:server": "node build/index.js"
