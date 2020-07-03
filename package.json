@@ -9,8 +9,8 @@
     "setup:db": "npm run db:migrate && npm run db:seed",
     "db:migrate": "./node_modules/.bin/sequelize db:migrate",
     "db:seed": "./node_modules/.bin/sequelize db:seed:all",
-    "start": "nodemon src/index.js --exec babel-node",
-    "start:prod": "npm run build:prod && npm run start:server",
+    "start": "npm run build:prod && npm run start:server",
+    "start:dev": "nodemon src/index.js --exec babel-node",
     "build:prod": "babel src -s -D -d build",
     "start:server": "node build/index.js"
   },
@@ -23,7 +23,7 @@
     "@babel/node": "7.8.7",
     "@babel/plugin-transform-runtime": "7.9.0",
     "@babel/preset-env": "7.9.5",
-    "nodemon": "2.0.3"
+    "nodemon": "^2.0.3"
   },
   "dependencies": {
     "@babel/runtime": "7.9.2",
