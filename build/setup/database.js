@@ -16,13 +16,19 @@ var _database = _interopRequireDefault(require("../config/database.json"));
 // Imports
 // App Imports
 // Load database config
-var databaseConfigEnv = _database["default"][_env.NODE_ENV]; // Create new database connection
+var databaseConfigEnv = _database["default"][_env.NODE_ENV];
+var connection = '';
 
-var connection = new _sequelize.Sequelize(databaseConfigEnv.database, databaseConfigEnv.username, databaseConfigEnv.password, {
-  host: databaseConfigEnv.host,
-  dialect: databaseConfigEnv.dialect,
-  logging: false
-}); // Test connection
+if (process.env.DATABASE_URL) {
+  connection = new _sequelize.Sequelize(process.env.DATABASE_URL);
+} else {
+  connection = new _sequelize.Sequelize(databaseConfigEnv.database, databaseConfigEnv.username, databaseConfigEnv.password, {
+    host: databaseConfigEnv.host,
+    dialect: databaseConfigEnv.dialect,
+    logging: false
+  });
+} // Test connection
+
 
 console.info('SETUP - Connecting database...');
 connection.authenticate().then(function () {

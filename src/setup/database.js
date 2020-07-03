@@ -7,14 +7,18 @@ import databaseConfig from '../config/database.json'
 
 // Load database config
 const databaseConfigEnv = databaseConfig[NODE_ENV]
+var connection = ''
 
-// Create new database connection
-const connection = new Sequelize(databaseConfigEnv.database, databaseConfigEnv.username, databaseConfigEnv.password, {
-  host: databaseConfigEnv.host,
-  dialect: databaseConfigEnv.dialect,
-  logging: false
-})
-
+if(process.env.DATABASE_URL) {
+  connection = new Sequelize(process.env.DATABASE_URL)
+}
+else {
+  connection = new Sequelize(databaseConfigEnv.database, databaseConfigEnv.username, databaseConfigEnv.password, {
+    host: databaseConfigEnv.host,
+    dialect: databaseConfigEnv.dialect,
+    logging: false
+  })
+}
 // Test connection
 console.info('SETUP - Connecting database...')
 
