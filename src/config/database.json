@@ -8,12 +8,8 @@
     "seederStorage": "sequelize"
   },
   "production": {
-    "username": "postgres",
-    "password": null,
-    "database": "crate",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
-    "seederStorage": "sequelize",
-    "operatorsAliases": false,
-    "use_env_variable": "DATABASE_URL"
+    "operatorsAliases": false
   }
 }
